@@ -31,13 +31,6 @@ function incomingSms(req, res, next) {
 async function allSmsHandler(message) {
 
   const msg = decodeMessages(message)
-//   const codes = await adminService.getCodebyName(message.to);
-//   if (!codes) {
-//     return {
-//       processed: false,
-//       message: "Short Code not Found"
-//     }
-//   }
   let smsAll = await smsService.addMessage({
     message: msg ? msg : message.content,
     shortCode: message.to,
