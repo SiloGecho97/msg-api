@@ -18,7 +18,7 @@ function incomingSms(req, res, next) {
   allSmsHandler(queryParams)
     .then((response) => {
       if (response.processed) {
-        next();
+        res.status(200).send("ACK/Jasmin");
       } else {
         res.status(200).send("ACK/Jasmin");
       }
@@ -29,12 +29,12 @@ function incomingSms(req, res, next) {
 }
 
 async function allSmsHandler(message) {
-
   const msg = decodeMessages(message)
   let smsAll = await smsService.addMessage({
     message: msg ? msg : message.content,
     shortCode: message.to,
     phoneNumber: message.from,
+    type:"Message",
     receivedDate: moment().format("YYYY-MM-DD HH:mm:ss"),
   });
   if (smsAll) {

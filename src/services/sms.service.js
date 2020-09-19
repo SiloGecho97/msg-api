@@ -2,6 +2,11 @@
 
 const axios = require('axios');
 const { Message } = require('../models');
+const Sequelize = require("sequelize");
+
+const Op = Sequelize.Op;
+const moment = require("moment");
+const sequelize = require("../database/connection");
 
 function addMessage(message) {
     return Message.create(message).catch((err) => console.log(err));
