@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 
-const sequelize = new Sequelize("msgdb", "root", "password", {
+const sequelize = new Sequelize("msgdb", "root", "Vas123Vas!&", {
   host: "192.168.0.10",
   dialect: "mysql",
   logging: false,

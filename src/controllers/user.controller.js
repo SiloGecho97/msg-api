@@ -11,7 +11,6 @@ function login(req, res, next) {
 }
 
 async function authenticationHandler({ username, password }) {
-    console.log({ username, password });
     // const us= await userService.createUser({username,password,fullName:"User Name"})
     const user = await userService.getUserByUserName(username);
     if (!user) {
@@ -20,7 +19,6 @@ async function authenticationHandler({ username, password }) {
     if (user.status != 1  ) {
         throw "Your account is suspended!";
     }
-    console.log(user)
     const pass = bcryptjs.compareSync(password, user.password);
 
     if (!pass) {
