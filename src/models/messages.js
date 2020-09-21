@@ -35,6 +35,14 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         type: DataTypes.DATE,
       },
+      valueName: {
+        type:DataTypes.STRING(2),
+        allowNull: true,
+        references: {
+          model: "values",
+          key: "name",
+        },
+      },
     },
     {
       tableName: "messages",

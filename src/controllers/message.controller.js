@@ -29,13 +29,15 @@ function incomingSms(req, res, next) {
 }
 
 async function allSmsHandler(message) {
-  const msg = decodeMessages(message)
+  // const msg = decodeMessages(message)
+  let { key, msg } = parseKey(message.content);
+
   let smsAll = await smsService.addMessage({
     message: msg ? msg : message.content,
     shortCode: message.to,
     phoneNumber: message.from,
-    type:"Message",
-    receivedDate: moment().format("YYYY-MM-DD HH:mm:ss"),
+    type:key,
+    valueName:key,
   });
   if (smsAll) {
     return { processed: true };
