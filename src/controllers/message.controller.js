@@ -30,12 +30,12 @@ function incomingSms(req, res, next) {
 
 async function allSmsHandler(message) {
   // const msg = decodeMessages(message)
-  let { key, msg } = parseKey(message.content);
+  let { key, msg } = parseKey(message.a);
 
   let smsAll = await smsService.addMessage({
     message: msg ? msg : message.content,
-    shortCode: message.to,
-    phoneNumber: message.from,
+    shortCode: message.P,
+    phoneNumber: message.q,
     type:key,
     valueName:key,
   });
