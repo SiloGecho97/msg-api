@@ -40,6 +40,12 @@ async function allSmsHandler(message) {
     valueName:key,
   });
   if (smsAll) {
+    let outMessage = await smsService.addOutMessage({
+      shortCode: message.P,
+      phoneNumber: message.q,
+      message: "Reply Message"
+    });
+    let rsp = await smsService.sendMessage(outMessage);
     return { processed: true };
   }
   return { processed: false };
@@ -82,14 +88,7 @@ function isUnicode(str) {
 }
 
 async function sendMessageHandler(body) {
-  const isUn = isUnicode(body.message);
-  // console.log(toUnicode("M-1 "))
-  if (isUn) {
-    const msg = toUnicode(body.message);
-    const sendUnicode = await smsService.sendUnicodeMessage({ ...body.dataValues, msg })
-  } else {
-    const send = await smsService.sendMessage(body);
-  }
+  const send = await smsService.sendMessage(body);
 }
 
 function getAllMessage(req, res, next) {

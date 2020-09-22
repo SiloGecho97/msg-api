@@ -13,7 +13,7 @@ let app = express();
 
 // app.use(cors(corsOptionsDelegate))
 app.use(cors({
-  origin:['http://192.168.0.103:4200', "http://localhost:4200","http://192.168.0.253:4200" ] ,
+  origin:['http://192.168.0.250', "http://localhost:4200","http://192.168.0.250:4200" ] ,
   credentials: true,
 }));
 
